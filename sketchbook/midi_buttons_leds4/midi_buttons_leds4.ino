@@ -23,12 +23,12 @@ const int numberOfColumns = 2;
 #define NUMBER_OF_PIXELS 8
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMBER_OF_PIXELS, LED_STRIP_PIN, NEO_GRB + NEO_KHZ800);
 
-// pin 8 - Serial clock out (SCLK)
-// pin 12 - Serial data out (DIN)
-// pin 11 - Data/Command select (D/C)
+// pin 12 - Serial clock out (SCLK)
+// pin 11 - Serial data out (DIN)
+// pin 10 - Data/Command select (D/C)
 // pin 9 - LCD chip select (CS)
-// pin 10 - LCD reset (RST)
-Adafruit_PCD8544 display = Adafruit_PCD8544(8, 12, 11, 9, 10);
+// pin 8 - LCD reset (RST)
+Adafruit_PCD8544 display = Adafruit_PCD8544(12, 11, 10, 9, 8);
 
 const int ledPin = 13;
 
@@ -172,7 +172,6 @@ unsigned long elapsed(unsigned long previousTime, unsigned long currentTime) {
   if (previousTime < currentTime) {
     elapsedTime = currentTime - previousTime;
   } else {
-    Serial.println("rotated");
     elapsedTime = 429497295 - previousTime + currentTime;
   }
   return elapsedTime;
@@ -192,7 +191,9 @@ void initializeDisplay() {
   display.setTextSize(1);
   display.setTextColor(BLACK);
   display.setCursor(0,0);
-  display.println("Hello, world!");
+  display.println("MIDI");
+  display.println("Controller");
+  display.println("v0.1");
   display.display();
 }
 
