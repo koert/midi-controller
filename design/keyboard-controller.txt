@@ -1,0 +1,33 @@
+keyboard controller
+i2c
+
+http://www.openmusiclabs.com/learning/digital/input-matrix-scanning/
+
+TCA8418 I2C Controlled Keypad
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&ved=0CD0QFjAC&url=http%3A%2F%2Fwww.ti.com%2Flitv%2Fscps215b&ei=qZp2UqDaFOeU0AWZ4YDAAg&usg=AFQjCNFcCa3Z6ykyxgAMsNJHbm0JcbUpfw&sig2=uO1GwcI2KUp1j9-wreEIQA&bvm=bv.55819444,d.d2k
+
+TCA8424
+(ACTIVE) Low-Voltage 8x16 Keyboard Scanner With HID over I2C Compliant Interface
+http://www.ti.com/product/tca8424?CMP=AFC-conv_SF_SEP
+
+Programmable Keyboard/Display Interface - 8279
+http://www.ece.unm.edu/~jimp/310/slides/8086_IO3.html
+
+TCA8418 - (ACTIVE) I2C Controlled Keypad Scan IC
+http://www.ti.com/product/tca8418&DCMP=hpa_intf_general&HQS=Other+PR+tca8418-pr
+
+Multiplexer
+http://www.conrad.nl/ce/nl/product/155668/Logic-IC-STMicroelectronics-HCF-4051-BEY-Soort-behuizing-DIP-16-Uitvoering-Multiplexer
+3 bit selector for 8 in/out
+
+http://www.conrad.nl/ce/nl/product/173320/CMOS-IC-Texas-Instruments-4067-Soort-behuizing-DIP-24-Uitvoering-Multiplexerdemultiplexer-16-analogedigitale-kanalen?ref=searchDetail
+4 bit selector for 16 in/out
+
+
+http://www.conrad.nl/ce/nl/product/046518/Arduino-Leonardo-incl-USB-kabel?ref=list
+
+
+Shift register
+http://www.conrad.nl/ce/nl/product/155762/Logic-IC-STMicroelectronics-M74HC595B1R-Soort-behuizing-DIP-16-Uitvoering-8-bit-shift-register?ref=list
+
+

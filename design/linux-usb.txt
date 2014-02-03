@@ -1,0 +1,101 @@
+Midi controller project
+
+- Linux USB
+  http://www.linuxforu.com/2011/11/usb-drivers-in-linux-2/
+  - endpoint
+    Interrupt — for small and fast data transfers, typically of up to 8 bytes. Examples include data transfer for serial ports, human interface devices (HIDs) like keyboards, mouse, etc.
+    Additionally, all but control endpoints could be “in” or “out”, indicating the direction of data transfer; “in” indicates data flow from the USB device to the host machine, and “out”, the other way.
+    Technically, an endpoint is identified using an 8-bit number, the most significant bit (MSB) of which indicates the direction — 0 means “out”, and 1 means “in”. Control endpoints are bi-directional, and the MSB is ignored.
+
+- Gadget API
+  http://www.gnugeneration.com/books/linux/2.6.20/gadget/
+  struct usb_gadget
+  There's a "serial line" driver, useful for TTY style operation over USB. The latest version of that driver supports CDC ACM style operation, like a USB modem, and so on most hardware it can interoperate easily with MS-Windows. One interesting use of that driver is in boot firmware (like a BIOS), which can sometimes use that model with very small systems without real serial lines.
+  
+  http://www.linux-usb.org/gadget/
+    MIDI ... this exposes an ALSA MIDI interface, which will appear in /proc/asound/cards with both recording and playback support. On the gadget side, open the MIDI gadget like any other ALSA MIDI device. Then you can write events to the host, or read them from the host.
+    
+  http://blackfin.uclinux.org/doku.php?id=linux-kernel:usb-gadget:midi
+  on gadget:
+    root:~> modprobe g_midi
+    g_midi gadget: MIDI Gadget, version: 25 Jul 2006
+    g_midi gadget: using musb_hdrc, OUT ep6out IN ep5in
+    g_midi gadget: gmidi_register_card finished ok
+    g_midi gadget: gmidi_bind finished ok
+    root:~> g_midi gadget: HNP inactive
+    g_midi gadget: high speed
+    
+    root:~> cat /proc/asound/cards
+     0 [bf548ezkit     ]: AD1980 - bf548-ezkit
+                          bf548-ezkit (AD1980)
+     1 [gmidi          ]: MIDI Gadget - g_midi
+                          MIDI Gadget
+    root:~> cat /proc/asound/gmidi/
+    cat: read error: Is a directory
+    root:~> ls /proc/asound/gmidi/ 
+    id         midi0      oss_mixer
+    
+  on host:
+    $ mount -t usbfs none /proc/bus/usb/
+    $ cat /proc/bus/usb/devices 
+
+    T:  Bus=05 Lev=01 Prnt=01 Port=06 Cnt=01 Dev#= 29 Spd=480 MxCh= 0
+    D:  Ver= 2.00 Cls=00(>ifc ) Sub=00 Prot=00 MxPS=64 #Cfgs=  1
+    P:  Vendor=17b3 ProdID=0004 Rev= 2.16
+    S:  Manufacturer=Linux 2.6.22.14-ADI-2007R2-pre-svn3935 with musb_
+    S:  Product=MIDI Gadget
+    C:* #Ifs= 2 Cfg#= 1 Atr=80 MxPwr=  2mA
+    I:* If#= 0 Alt= 0 #EPs= 0 Cls=01(audio) Sub=01 Prot=00 Driver=snd-usb-audio
+    I:* If#= 1 Alt= 0 #EPs= 2 Cls=01(audio) Sub=03 Prot=00 Driver=snd-usb-audio
+    E:  Ad=06(O) Atr=02(Bulk) MxPS=  64 Ivl=0ms
+    E:  Ad=85(I) Atr=02(Bulk) MxPS=  64 Ivl=0ms
+
+    $ cat /proc/asound/cards 
+     0 [ICH6           ]: ICH4 - Intel ICH6
+                          Intel ICH6 with AD1981B at irq 21
+     1 [Gadget         ]: USB-Audio - MIDI Gadget
+                          Linux 2.6.22.14-ADI-2007R2-pre-svn3935 with musb_ MIDI Gadget at usb-0000:00:1d
+    $ ls /proc/asound/Gadget/
+    id  midi0  oss_mixer  usbbus  usbid
+  
+  Ubuntu:
+    locate g_midi.ko
+    /lib/modules/3.2.0-23-generic/kernel/drivers/usb/gadget/g_midi.ko
+    
+  Midi device
+    http://www.faqs.org/docs/Linux-HOWTO/MIDI-HOWTO.html#ss9.1  
+    //
+    // Programmer:    Craig Stuart Sapp [craig@ccrma.stanford.edu]
+    // Creation Date: Mon Dec 21 18:00:42 PST 1998
+    // Last Modified: Mon Dec 21 18:00:42 PST 1998
+    // Filename:      ...linuxmidi/output/method1.c
+    // Syntax:        C 
+    // $Smake:        gcc -O -o devmidiout devmidiout.c && strip devmidiout
+    //
+
+    #include <linux/soundcard.h>
+    #include <unistd.h>
+    #include <fcntl.h>
+    #include <stdio.h>
+
+    int main(void) {
+       char* device =  "/dev/midi" ;
+       unsigned char data[3] = {0x90, 60, 127};
+
+       // step 1: open the OSS device for writing
+       int fd = open(device, O_WRONLY, 0);
+       if (fd < 0) {
+          printf("Error: cannot open %s\n", device);
+          exit(1);
+       }
+
+       // step 2: write the MIDI information to the OSS device
+       write(fd, data, sizeof(data));
+
+       // step 3: (optional) close the OSS device
+       close(fd);
+
+       return 0;
+    }
+
+
