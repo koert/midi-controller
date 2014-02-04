@@ -1,0 +1,17 @@
+== DIY Midi controller
+
+This is a project to create a custom MIDI controller based on:
+
+* Teensy 3.1
+* Pressure sensitive buttons made with anti static foam
+* WS2812B LED's
+* Nokia 5110 LCD display
+
+=== Resources
+
+==== Teensy
+Website: http://www.pjrc.com/teensy
+Shop: http://floris.cc/shop/en/8-teensy
+
+==== LCD display
+

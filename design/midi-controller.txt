@@ -1,17 +1,14 @@
 Midi controller
 
 Todo
-- design schematic pressure button in matrix
-  - fritzing component pressure button
-- USB MIDI with teensy
-  - connect to ableton
-  - loop note on/off
-- send midi note to computer
-- create 4 buttons in 2x2 matrix
-- use multiplexing in matrix
+- design schematic pressure button in 4x4 matrix
+- mount buttons on PCB
+- display notes on LCD display
 - connect LED's, display pushed button
+- buttons for octave up/down
 
 Done
+* note on/off with velocity
 * pushbutton prototype - connect to Arduino
 * send midi note to computer via Serial
 
@@ -35,7 +32,6 @@ Teensy
 http://floris.cc/shop/en/8-teensy
 
 Bestellen
-- kopertape
 - http://www.conrad.nl/ce/nl/product/173320/
 - http://www.conrad.nl/ce/nl/product/155762/
 
