@@ -1,0 +1,64 @@
+== Midi controller
+
+=== Todo
+
+* connect LED's, display pushed button
+* buttons for octave up/down
+
+=== Done
+
+* design schematic pressure button in 4x4 matrix
+* mount buttons on PCB
+* display notes on LCD display
+* note on/off with velocity
+* pushbutton prototype - connect to Arduino
+* send midi note to computer via Serial
+
+=== Inspiration
+
+http://jazarimusic.com/finally-a-diy-midi-controller-with-purpleheart/
+
+==== Velocity and aftertouch
+
+http://www.codetinkerhack.com/2013/01/how-to-add-velocity-aftertouch-midi.html
+
+[quote, http://www.codetinkerhack.com/2013/01/how-to-add-velocity-aftertouch-midi.html]
+____
+1) Measuring Velocity sensitivity required to add timing mechanism to allow sufficient time to read the FSR sensor as Note will get pressed first and FSR sensor second. So before we can send the note we need to measure the FSR values. To implement this two arrays were introduced: one  remembers the Note that was pressed and acts as a buffer: noteChannelPressed and second remembers the milliseconds when the note was pressed: previousMillisChannel. After a delay of about 1 ms value of FSR is translated to a volume. (currently linear translation is done by simple mapping the range of FSR  to MIDI but you can experiment and see what suits most your FSR/location/mechanics, etc). And after that note with volume is sent to Midi. The functions implementing above are getNote() and sendChannelNotes()
+
+2) Aftertouch was implemented (as well) based on FSR readings and handled by sendChannelExpression(). Effect is only kicks in after 1 second which is configured in expressionDelay constant. As aftertouch effect I've used midi modulation command as it is widely supported by all synth. It can be map to any other effect that your synth support.
+____
+
+=== Hardware
+
+Multiplexer
+http://www.conrad.nl/ce/nl/product/155668/Logic-IC-STMicroelectronics-HCF-4051-BEY-Soort-behuizing-DIP-16-Uitvoering-Multiplexer
+3 bit selector for 8 in/out
+
+http://www.conrad.nl/ce/nl/product/173320/CMOS-IC-Texas-Instruments-4067-Soort-behuizing-DIP-24-Uitvoering-Multiplexerdemultiplexer-16-analogedigitale-kanalen?ref=searchDetail
+4 bit selector for 16 in/out
+
+
+Arduino Leonardo
+http://www.conrad.nl/ce/nl/product/046518/Arduino-Leonardo-incl-USB-kabel?ref=list
+https://www.youtube.com/watch?v=aaGbciiM_G0
+https://iprototype.nl/products/arduino/boards/leonardo-no-headers
+
+LED  WS2812
+http://mikrocontroller-praxis.de/de/Display-Optoelektronik/LED/LED-RGB/WS2812-5050-RGB-LED-with-Integrated-Driver-Chip-1PCS.html
+
+Teensy
+http://floris.cc/shop/en/8-teensy
+
+Buttons
+https://www.sparkfun.com/products/7835
+
+Bestellen
+- http://www.conrad.nl/ce/nl/product/173320/
+- http://www.conrad.nl/ce/nl/product/155762/
+
+- SMD transistor http://www.conrad.nl/ce/nl/product/153862/
+- SMD LED http://www.conrad.nl/ce/nl/product/181506/
+- SMD 100 ohm http://www.conrad.nl/ce/nl/product/433052/
+- SMD Schakelaar http://www.conrad.nl/ce/nl/product/707554/
+                 http://www.conrad.nl/ce/nl/product/705247/

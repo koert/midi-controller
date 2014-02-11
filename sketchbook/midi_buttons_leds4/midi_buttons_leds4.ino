@@ -33,7 +33,7 @@ Adafruit_PCD8544 display = Adafruit_PCD8544(12, 11, 10, 9, 8);
 const int ledPin = 13;
 
 int rowPins[] = {0, 1}; // analog input of row
-int columnPins[] = {16, 17}; // digital output of column activation feed
+int columnPins[] = {0, 1}; // digital output of column activation feed
 
 int buttonNote[] = {60, 64, 63, 67, 67, 71, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 int buttonState[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};

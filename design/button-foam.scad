@@ -117,14 +117,25 @@ module buttonMount() {
   }
 }
 
+module bottomSupport() {
+  $fn = 30;
+  difference() {
+    cylinder(h = 8, r1 = 3.5, r2 = 2.5, center = true);
+    cylinder(h = 9, r = 1.2, center = true);
+  }
+}
+
 *top();
 *base();
 
-buttonTop();
+*buttonTop();
 
 *translate([0, 0, -10])
 buttonBottom();
 
 *translate([45, 0, -10])
 buttonMount();
+
+translate([0, 0, -10])
+bottomSupport();
 

@@ -12,6 +12,9 @@ Done
 * pushbutton prototype - connect to Arduino
 * send midi note to computer via Serial
 
+Inspiration
+http://jazarimusic.com/finally-a-diy-midi-controller-with-purpleheart/
+
 Multiplexer
 http://www.conrad.nl/ce/nl/product/155668/Logic-IC-STMicroelectronics-HCF-4051-BEY-Soort-behuizing-DIP-16-Uitvoering-Multiplexer
 3 bit selector for 8 in/out
@@ -30,6 +33,9 @@ http://mikrocontroller-praxis.de/de/Display-Optoelektronik/LED/LED-RGB/WS2812-50
 
 Teensy
 http://floris.cc/shop/en/8-teensy
+
+Buttons
+https://www.sparkfun.com/products/7835
 
 Bestellen
 - http://www.conrad.nl/ce/nl/product/173320/
